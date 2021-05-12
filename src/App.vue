@@ -6,6 +6,35 @@
     </div>
     <router-view/> -->
 
+    <!-- Header -->
+    <header>
+      <!-- Logo icon -->
+      <img class="logo-icon" src="./assets/wildrun-logo.png" alt="logo">
+
+      <!-- main-menu -->
+      <div class="main-menu">
+        <ul 
+        class="main-menu__list">
+        <li class="main-menu__item" v-for="menu_item in alldata.SiteData.MainMenu"
+        :key="menu_item.TitleMenu">
+          <span class="main-menu__item--title" v-html="menu_item.TitleMenu"></span>
+
+          <span class="main-menu__item--caret" v-if="menu_item.TitleSubMenu.length">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 12c0-6.627-5.373-12-12-12s-12 5.373-12 12 5.373 12 12 12 12-5.373 12-12zm-18.005-1.568l1.415-1.414 4.59 4.574 4.579-4.574 1.416 1.414-5.995 5.988-6.005-5.988z"/></svg>
+          </span>
+
+          <!-- Dropdown -->
+          <ul class="main-menu__dropdown-list" v-if="menu_item.TitleSubMenu.length">
+            <li class="main-menu__subitem" v-for="subitem in menu_item.TitleSubMenu" :key="subitem.SecondTitleMenu">
+              {{subitem.SecondTitleMenu}}
+            </li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
     <!-- Section - B -->
     <section class="wildrun-b">
       <div class="container">
@@ -40,7 +69,7 @@
             <ul class="companies-list">
               <li
                 class="companies-list__item"
-                v-for="company_name in this.alldata.SiteData.PartnersBlock
+                v-for="company_name in alldata.SiteData.PartnersBlock
                   .CompaniesList"
                 :key="company_name.Name"
               >
@@ -131,14 +160,10 @@
     </section>
 
     <div class="custom-divider"></div>
+    </main>
 
-    <pre>
-  <!-- {{ alldata.SiteData.PartnersBlock.CompaniesList }} -->
-
-</pre>
   </div>
 </template>
-
 <script>
 import siteData from "../data/local_data.json";
 export default {
@@ -188,6 +213,40 @@ $custom-transition: 0.35s;
   margin: 0 auto;
 }
 
+// Main Menu
+.main-menu{
+  &__list{
+    @include align-flex(row, space-evenly,center);
+    list-style: none;
+  }
+
+  &__item{
+    @include align-flex(row, center, center);
+    cursor: pointer;
+    position: relative;
+    > * {
+      display: block;
+    }
+
+    &--caret{
+      margin-left: 1rem;
+    }
+  }
+
+  &__dropdown-list{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    padding: 1rem;
+    border: 1px solid red;
+  }
+
+
+}
+
+
+
 // Custom classes
 .custom-heading {
   font-size: 1.5rem;
@@ -203,6 +262,19 @@ $custom-transition: 0.35s;
   width: 96%;
   box-shadow: 0 0 5px 0px #959595;
   margin: 3rem auto;
+}
+
+.logo-icon{
+  display: block;
+  height: 160px;
+  width: auto;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+// Header
+header{
+margin-bottom: 10rem;
 }
 
 // Section - B
@@ -369,18 +441,15 @@ $custom-transition: 0.35s;
 
 // Section C
 .wildrun-c {
-  // min-height: 200px;
-  // background-color: $light-color;
-
   .partners-block {
     @include align-flex(row, space-evenly, center);
     list-style: none;
 
     &__item {
       @extend %transitions;
-      transition-property: box-shadow;
+      transition-property: transform;
       &:hover {
-        box-shadow: 0 0 5px $secondary-color;
+        transform: scale(1.02);
       }
     }
 
