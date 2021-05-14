@@ -217,7 +217,7 @@ $primary-color: rgb(255, 102, 0);
 $secondary-color: rgb(95, 91, 91);
 
 $light-color: beige;
-$custom-transition: 0.35s;
+$custom-transition: 0.3s;
 
 @mixin align-flex($direction, $horizontal, $vertical) {
   display: flex;
@@ -238,17 +238,21 @@ $custom-transition: 0.35s;
 
 // Main Menu
 .main-menu {
+  * {
+    @extend %transitions;
+  }
   &__list {
     @include align-flex(row, space-evenly, center);
     list-style: none;
   }
 
-
-
   &__item {
     @include align-flex(row, center, center);
     cursor: pointer;
     position: relative;
+    font-size: 1.2rem;
+    @extend %transitions;
+
     > * {
       display: block;
     }
@@ -258,42 +262,47 @@ $custom-transition: 0.35s;
       @extend %transitions;
     }
 
-    &:hover{
-      .main-menu__item--caret{
-        path{
-          fill: $primary-color ;
+    &:hover {
+      .main-menu__item--caret {
+        path {
+          fill: $primary-color;
         }
       }
 
+      .main-menu__item--title {
+        color: $primary-color;
+      }
 
-
-      .main-menu__dropdown-list{
-      display: block;
-      z-index: 1;
-
+      .main-menu__dropdown-list {
+        display: block;
+        z-index: 1;
       }
     }
-
-    // &:hover .main-menu__dropdown-list{
-    //   display: block;
-    // }
   }
 
-    &__dropdown-list {
+  &__dropdown-list {
     position: absolute;
     top: 100%;
     left: 0;
     min-width: 150px;
     padding: 15px 5px;
     list-style: none;
-    border: 1px solid red;
+    box-shadow: 0 0 5px $secondary-color;
     display: none;
+    background: rgba($color: $light-color, $alpha: 0.9);
   }
 
-  
+  &__subitem {
+    padding: 10px 7px;
+    border-radius: 15px;
 
-  &__subitem:not(:last-child){
-    padding-bottom: 1rem;
+    &:hover{
+        background: rgba($color:$secondary-color, $alpha: 0.7);
+        color: $light-color;
+    }
+  }
+  &__subitem:not(:last-child) {
+    margin-bottom: 1rem;
   }
 }
 
@@ -324,7 +333,7 @@ $custom-transition: 0.35s;
 
 // Header
 header {
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
 }
 
 // Section - B

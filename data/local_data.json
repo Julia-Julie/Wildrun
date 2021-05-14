@@ -235,7 +235,7 @@
           }
         }
       },
-      "AboutUs": {
+      "AboutUs": {  
         "ContentType": "infoPage",
         "Title": "About Us",
         "Url": "/about-us",
