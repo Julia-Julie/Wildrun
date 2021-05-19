@@ -91,14 +91,14 @@
             <!-- Companies list -->
             <nav>
               <ul class="companies-list">
-                <li
+             
+                  <li
                   class="companies-list__item"
-                  v-for="company_name in alldata.SiteData.PartnersBlock
-                    .CompaniesList"
-                  :key="company_name.Name"
+                  v-for="item in alldata.SiteData.Children.Products.Children"
+                  :key="item.Name"
                 >
                   <div class="companies-list__img">
-                    <img :src="company_name.Img" alt="img" />
+                    <img :src="item.Img" alt="img" />
                     <div class="companies-list__more">
                       <div class="companies-list--icon">
                         <svg
@@ -114,7 +114,7 @@
                         </svg>
                       </div>
 
-                      <a class="companies-list--icon" :href="company_name.Url">
+                      <a class="companies-list--icon" :href="item.Url">
                         <svg
                           width="24"
                           height="24"
@@ -143,12 +143,12 @@
                     </div>
                   </div>
 
-                  <a class="companies-list__link" :href="company_name.Url">
+                  <a class="companies-list__link" :href="item.Url">
                     <span class="companies-list__description">{{
-                      company_name.Description
+                      item.Description
                     }}</span>
                     <span class="companies-list__price">{{
-                      company_name.Price
+                      item.Price
                     }}</span>
                   </a>
                 </li>
