@@ -91,8 +91,7 @@
             <!-- Companies list -->
             <nav>
               <ul class="companies-list">
-             
-                  <li
+                <li
                   class="companies-list__item"
                   v-for="item in alldata.SiteData.Children.Products.Children"
                   :key="item.Name"
@@ -147,9 +146,7 @@
                     <span class="companies-list__description">{{
                       item.Description
                     }}</span>
-                    <span class="companies-list__price">{{
-                      item.Price
-                    }}</span>
+                    <span class="companies-list__price">{{ item.Price }}</span>
                   </a>
                 </li>
               </ul>
@@ -250,7 +247,13 @@ $custom-transition: 0.3s;
     @include align-flex(row, center, center);
     cursor: pointer;
     position: relative;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: 900 ;
+
+    background-image: linear-gradient(45deg, #16b320, #ff9800);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
     @extend %transitions;
 
     > * {
@@ -263,6 +266,8 @@ $custom-transition: 0.3s;
     }
 
     &:hover {
+      background-image: linear-gradient(90deg, red, #cdfa53, green);
+
       .main-menu__item--caret {
         path {
           fill: $primary-color;
@@ -284,21 +289,23 @@ $custom-transition: 0.3s;
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: 150px;
+    min-width: 200px;
     padding: 15px 5px;
+    font-size: 1.3rem;
     list-style: none;
     box-shadow: 0 0 5px $secondary-color;
     display: none;
     background: rgba($color: $light-color, $alpha: 0.9);
+    color: $secondary-color;
   }
 
   &__subitem {
     padding: 10px 7px;
     border-radius: 15px;
 
-    &:hover{
-        background: rgba($color:$secondary-color, $alpha: 0.7);
-        color: $light-color;
+    &:hover {
+      background: rgba($color: $secondary-color, $alpha: 0.7);
+      color: $light-color;
     }
   }
   &__subitem:not(:last-child) {
