@@ -182,6 +182,42 @@
 
       <div class="custom-divider"></div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content">
+
+          <!-- {{alldata.SiteData.FooterBlock}} -->
+
+          <!-- Column - 1 -->
+          <div class="footer__col-1">
+            <img :src="alldata.SiteData.FooterBlock.Logo" alt="logo-icon">
+
+            <div class="footer__text">
+              {{alldata.SiteData.FooterBlock.Description}}
+            </div>
+          </div>
+
+          <!-- Column - 2 -->
+          <div class="footer__col-2"></div>
+
+          <!-- Column - 3 -->
+          <div class="footer__col-3"></div>
+
+          <!-- Column - 4 -->
+          <div class="footer__col-4"></div>
+
+          <!-- Column - 5 -->
+          <div class="footer__col-5"></div>
+          
+        </div>
+      </div>
+
+    </footer>
+
+
+
   </div>
 </template>
 <script>
@@ -523,6 +559,18 @@ header {
       height: 130px;
       width: 130px;
       object-fit: cover;
+    }
+  }
+}
+
+// Footer
+.footer{
+  &__content{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+
+    > *{
+      border: 1px solid green;
     }
   }
 }
