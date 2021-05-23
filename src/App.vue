@@ -183,24 +183,41 @@
       <div class="custom-divider"></div>
     </main>
 
+    {{ alldata.SiteData.FooterBlock.Children }}
+
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="footer__content">
-
           <!-- {{alldata.SiteData.FooterBlock}} -->
 
           <!-- Column - 1 -->
           <div class="footer__col-1">
-            <img :src="alldata.SiteData.FooterBlock.Logo" alt="logo-icon">
+            <img :src="alldata.SiteData.FooterBlock.Logo" alt="logo-icon" />
 
             <div class="footer__text">
-              {{alldata.SiteData.FooterBlock.Description}}
+              {{ alldata.SiteData.FooterBlock.Description }}
             </div>
           </div>
 
           <!-- Column - 2 -->
-          <div class="footer__col-2"></div>
+          <div class="footer__col-2">
+            <h2 class="footer__heading">
+              {{ alldata.SiteData.FooterBlock.PagesTags[0] }}
+            </h2>
+
+            <ul class="footer__list">
+              <li
+                class="footer__item"
+                v-for="(item) in alldata.SiteData.Children"
+                :key="item.index"
+              >
+                <a href="#" class="footer__link">
+                  {{ item.Title }}
+                </a>
+              </li>
+            </ul>
+          </div>
 
           <!-- Column - 3 -->
           <div class="footer__col-3"></div>
@@ -210,14 +227,9 @@
 
           <!-- Column - 5 -->
           <div class="footer__col-5"></div>
-          
         </div>
       </div>
-
     </footer>
-
-
-
   </div>
 </template>
 <script>
@@ -284,7 +296,7 @@ $custom-transition: 0.3s;
     cursor: pointer;
     position: relative;
     font-size: 1.6rem;
-    font-weight: 900 ;
+    font-weight: 900;
 
     background-image: linear-gradient(45deg, #16b320, #ff9800);
     color: transparent;
@@ -564,13 +576,56 @@ header {
 }
 
 // Footer
-.footer{
-  &__content{
+.footer {
+  background-image: linear-gradient(
+      to right,
+      rgba(rgb(73, 73, 32), 0.8),
+      rgba($primary-color, 0.8),
+      rgba(rgb(43, 43, 59), 0.8)
+    ),
+    url("./assets/footer-bg.jpg");
+
+  &__content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    grid-gap: 1rem;
+    color: $light-color;
 
-    > *{
+    > * {
       border: 1px solid green;
+      padding: 20px 10px;
+    }
+  }
+
+  &__heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+  }
+
+  &__list {
+    margin-top: 1.3rem;
+    list-style-type: none;
+  }
+
+  &__item {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
