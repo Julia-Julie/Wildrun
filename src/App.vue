@@ -183,8 +183,12 @@
       <div class="custom-divider"></div>
     </main>
 
-    {{ alldata.SiteData.FooterBlock.Children }}
+    <pre>
+    {{ alldata.SiteData.Children }}
+</pre
+    >
 
+    <!-- {{getArray}} -->
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -209,7 +213,7 @@
             <ul class="footer__list">
               <li
                 class="footer__item"
-                v-for="(item) in alldata.SiteData.Children"
+                v-for="item in getArray"
                 :key="item.index"
               >
                 <a href="#" class="footer__link">
@@ -238,11 +242,37 @@ export default {
   data() {
     return {
       alldata: siteData,
+      arr: [],
     };
   },
 
+  computed: {
+    getArray() {
+      let obj = this.alldata.SiteData.Children;
+      // let info_page_obj = obj.entries;
+      return obj;
+    },
+  },
+
+  methods: {
+    getOrest2() {
+      return this.counter;
+    },
+
+    getInfoObj() {
+      // let obj = this.alldata.SiteData.Children;
+      // for(const[key, value] of Object.entries(this.getArray)){
+      //   console.log(`${key}, ${value}`);
+      // }
+    },
+  },
+
   created: function() {
-    // alert('kdmc')
+    for (const [key, value] of Object.entries(this.getArray)) {
+      if (value["ContentType"] === "infoPage") {
+        console.log(key, value);
+      }
+    }
   },
 };
 </script>
@@ -584,6 +614,8 @@ header {
       rgba(rgb(43, 43, 59), 0.8)
     ),
     url("./assets/footer-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &__content {
     display: grid;
