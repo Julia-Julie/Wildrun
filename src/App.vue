@@ -184,9 +184,8 @@
     </main>
 
     <pre>
-    {{ alldata.SiteData.Children }}
-</pre
-    >
+    <!-- {{ alldata.SiteData.Children }} -->
+</pre>
 
     <!-- {{getArray}} -->
     <!-- Footer -->
@@ -216,7 +215,7 @@
                 v-for="item in getArray"
                 :key="item.index"
               >
-                <a href="#" class="footer__link">
+                <a :href="item.Url" class="footer__link">
                   {{ item.Title }}
                 </a>
               </li>
@@ -243,29 +242,47 @@ export default {
     return {
       alldata: siteData,
       arr: [],
+      arrInfo: [],
     };
   },
 
   computed: {
+    // getInfoContent() {
+    //   for (const [key, value] of Object.entries(this.getArray)) {
+    //     if (value["ContentType"] === "infoPage") {
+    //       console.log(key, value);
+    //     }
+    //   }
+    //   return "ed";
+    // },
+
     getArray() {
       let obj = this.alldata.SiteData.Children;
-      // let info_page_obj = obj.entries;
+      // let key = '';
+      // let value_2 = {};
+
+      // let arrInfo = [];
+
+      //   for (const [key, value] of Object.entries(obj)) {
+      //     if (value["ContentType"] === "infoPage") {
+      //     console.log(key, value);
+      //     // value_2 = value;
+
+      //   }
+      // }
+
+      // this.arr.push(value_2);
+      console.log(obj);
+
+      //  return obj;
+
+      // let obj = this.alldata.SiteData.Children;
       return obj;
     },
-  },
 
-  methods: {
-    getOrest2() {
-      return this.counter;
-    },
 
-    getInfoObj() {
-      // let obj = this.alldata.SiteData.Children;
-      // for(const[key, value] of Object.entries(this.getArray)){
-      //   console.log(`${key}, ${value}`);
-      // }
-    },
   },
+  
 
   created: function() {
     for (const [key, value] of Object.entries(this.getArray)) {
@@ -619,12 +636,11 @@ header {
 
   &__content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
-    grid-gap: 1rem;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 2rem;
     color: $light-color;
 
     > * {
-      border: 1px solid green;
       padding: 20px 10px;
     }
   }
@@ -638,14 +654,19 @@ header {
   }
 
   &__list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     margin-top: 1.3rem;
     list-style-type: none;
   }
 
   &__item {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 1rem;
+    text-align: left;
+    // margin-bottom: 1rem;
+    font-weight: 400;
 
     &:last-child {
       margin-bottom: 0;
